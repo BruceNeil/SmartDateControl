@@ -1,0 +1,97 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:Units="clr-namespace:SmartDateControl.UI.Units">
+
+    <Style x:Key="TextStyle" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="13"/>
+        <Setter Property="Foreground" Value="#FFFFFF"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="Margin"
+                Value="10 10 10 5"/>
+        <Setter Property="Text"
+                Value="{Binding RelativeSource={RelativeSource TemplatedParent},Path=CurrentMonth,StringFormat={}{0:yyyy-MM}}" />
+    </Style>
+
+    <Style TargetType="{x:Type Units:SmartDate}">
+        <Setter Property="Background"
+                Value="#151515"></Setter>
+        <Setter Property="Height"
+                Value="30" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Units:SmartDate}">
+                    <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}">
+                        <Grid>
+                            <Units:CalendarSwitch x:Name="PART_Switch" />
+                            <Popup Name="PART_Popup"
+                                   StaysOpen="False">
+                                <Border>
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*" />
+                                            <RowDefinition />
+                                            <RowDefinition />
+                                        </Grid.RowDefinitions>
+                                        <Grid Grid.Row="0"
+                                              Grid.ColumnSpan="3">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition  Width="auto" />
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="auto" />
+                                            </Grid.ColumnDefinitions>
+
+                                            <Units:ChevronButton x:Name="PART_Left"
+                                                                 Tag="Left"
+                                                                 Foreground="White"></Units:ChevronButton>
+                                            <TextBlock Grid.Column="1"
+                                                       Style="{StaticResource TextStyle}"></TextBlock>
+                                            <Units:ChevronButton Grid.Column="2"
+                                                                 x:Name="PART_Right"
+                                                                 Tag="Right"
+                                                                 Foreground="White"></Units:ChevronButton>
+                                        </Grid>
+                                        <Grid Grid.Row="1">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                            </Grid.ColumnDefinitions>
+
+                                            <Units:DayOfWeek Grid.Column="0"
+                                                             Content="Mo"></Units:DayOfWeek>
+                                            <Units:DayOfWeek Grid.Column="1"
+                                                             Content="Tu"></Units:DayOfWeek>
+                                            <Units:DayOfWeek Grid.Column="2"
+                                                             Content="We"></Units:DayOfWeek>
+                                            <Units:DayOfWeek Grid.Column="3"
+                                                             Content="Th"></Units:DayOfWeek>
+                                            <Units:DayOfWeek Grid.Column="4"
+                                                             Content="Fr"></Units:DayOfWeek>
+                                            <Units:DayOfWeek Grid.Column="5"
+                                                             Content="Sa"></Units:DayOfWeek>
+                                            <Units:DayOfWeek Grid.Column="6"
+                                                             Content="Su"></Units:DayOfWeek>
+
+                                        </Grid>
+                                        <Units:CalendarBox x:Name="PART_ListBox"
+                                                           Grid.ColumnSpan="7"
+                                                           Grid.Row="2">
+                                        </Units:CalendarBox>
+                                    </Grid>
+
+                                </Border>
+                            </Popup>
+                        </Grid>
+
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>
